@@ -6,6 +6,10 @@ typedef struct espec_s{   //STRUCT PARA ARMAZENAR O ARQUIVO DE ESPECIFICAÇÃO
 int image[2], clear[3], color[3], line[4], polygon[7], circle[3], color2[3], fill[2], color3[3], fill2[2];
 }espec;
 
+typedef struct espec_s{   //STRUCT PARA ARMAZENAR O CIRCULOS COM BUGS
+int circle[50][3];
+}espec;
+
 typedef struct formas_s_q{   //STRUCT PARA ARMAZENAR DADOS DE QUADRADOS E RETÂNGULOS
 int posx, posy, tamx, tamy;
 }formas_q;
@@ -138,6 +142,45 @@ espec ler_espec(espec a){ //FUNÇÃO PARA LER O ARQUIVO DE ESPECIFICAÇÃO
 return a;
 }
 
+int contar_spec(char n[50]){ //FUNÇÃO QUE CONTA A QUANTIDADE DE LINHAS DO ARQUIVO    
+    int vezes=0;
+    char c, letra='\n';
+    FILE *arq = fopen(n, "r");
+	    if(arq == NULL)
+		    {
+		    printf("Erro na abertura do arquivo");
+		    }
+	    else
+		    {            
+                while(fread (&c, sizeof(char), 1, arq)) 
+                {
+                if(c == letra) 
+                    {
+                        vezes++;
+                    }
+                } 
+            fclose(arq);
+		    }
+return vezes;
+}
+
+add_circle(char n[50], int n){
+int i;
+
+FILE *arq = fopen(n, "r");
+	    if(arq == NULL)
+		    {
+		    printf("Erro na abertura do arquivo");
+		    }
+	    else
+		    {            
+            for(i=0; i<11; i++){
+            //fscanf(arq, "circle %d %d %d\n", &a.circle[0], &a.circle[1], &a.circle[2]);        
+            }
+            fclose(arq);
+		    }
+}
+
 int *** aloc_f(int t1, int t2, int t3){ //FUNÇÃO COM ALOCAÇÃO DINÂMICA DE MEMÓRIA
     int i, j;
     int ***vet = malloc(sizeof(int**)*t1);
@@ -167,6 +210,8 @@ int ***vet=NULL;
 vet = aloc_f(fundo.tamy, fundo.tamx, 3);
 
 gerar_img(fundo.tamx, fundo.tamy, vet, fundo);
+
+contar_spec("espec.txt");
 
 return 0;
 }
