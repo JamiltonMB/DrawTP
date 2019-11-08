@@ -1,22 +1,31 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
+#include "structs.h"
 
 int dimx=0,dimy=0;
 
-void allocar(int N, int M, pixel** a) {
+pixel** allocar(int L, int C) {
   int i;
-  a = malloc(N * sizeof(pixel *));
-  for (i = 0; i < N; i++) {
-    a[i] = calloc(M, sizeof(pixel*));
+  pixel **p;
+  p = malloc(L * sizeof(pixel *));
+  for (i = 0; i < L; i++) {
+    p[i] = calloc(C, sizeof(pixel*));
   }
+  return p;
+}
+
+pixel color(pixel p,unsigned short r, unsigned short g,unsigned short b){
+    p.red=r;
+    p.green=g;
+    p.blue=b;
+    return p;
 }
 
 pixel** image (int x,int y){ //Cria uma nova "imagem", com largura e altura especificadas
     FILE *fp = fopen("n.ppm", "w");
-    pixel **p;
     dimx=x;
     dimy=y;
-    allocar(dimx,dimy,p);
+    pixel **p=allocar(dimx,dimy);
     if(fp == NULL)
     {
 		printf("Erro na abertura do arquivo");
@@ -24,13 +33,11 @@ pixel** image (int x,int y){ //Cria uma nova "imagem", com largura e altura espe
     else
     {
         fprintf(fp, "P3\n%d %d\n255\n", x, y);
-	    for(int j=0;j<y;j++)
+	    for(int i=0;i<dimy;i++)
 	    {
-		    for(int i=0;i<x;i++)
+		    for(int j=0;j<dimx;j++)
 		    {   
-                p[i][j].red=255;
-		        p[i][j].green=255;
-		        p[i][j].blue=255;
+                p[i][j]=color(p[i][j],255,255,255);
                 if(j!=dimx-1)
                 {
                     fprintf(fp,"%d %d %d ",p[i][j].red,p[i][j].green,p[i][j].blue);
@@ -40,7 +47,7 @@ pixel** image (int x,int y){ //Cria uma nova "imagem", com largura e altura espe
                     fprintf(fp,"%d %d %d",p[i][j].red,p[i][j].green,p[i][j].blue);
                 }
 		    }
-		    fprintf(fp,"\n");
+		    fprintf(fp,"\n"); 
 	    }
         fclose(fp);
     }
@@ -51,7 +58,7 @@ pixel** abrir_arquivo(char w[50]){ //função para letitura do arquivo
 	FILE *img = fopen(w, "r");
     fscanf(img, "P3\n%d %d\n255\n", &dimx, &dimy);
     pixel **p;
-    allocar(dimx,dimy,p);
+    p=allocar(dimx,dimy);
     
 	for(int i=0;i<dimx;i++)
     {
@@ -73,11 +80,6 @@ pixel** abrir_arquivo(char w[50]){ //função para letitura do arquivo
     return p;
 }
 
-void color(pixel p,unsigned short r, unsigned short g,unsigned short b){
-    p.red=r;
-    p.green=g;
-    p.blue=b;
-}
 
 void linha(pixel **p,reta r){ //https://gist.github.com/mfilipelino/11240714#file-paintopengl-c
     int dy = (r.p2.y - r.p1.y); //Diferença entre os pontos y2 e y1
@@ -116,7 +118,7 @@ void linha(pixel **p,reta r){ //https://gist.github.com/mfilipelino/11240714#fil
     
     while(true)
 	{
-	    color(p[i][j],0,0,0);
+	    p[i][j]=color(p[i][j],0,0,0);
         if((i==r.p2.y)&&(j==r.p2.x)) // Testa se chegou ao ponto final e encerra o algoritimo
         {
             break;
@@ -147,10 +149,10 @@ void save(pixel **p){
     else
     {
         fprintf(fp, "P3\n%d %d\n255\n", dimx, dimy);
-	    for(int j=0;j<dimy;j++)
-	    {
-		    for(int i=0;i<dimx;i++)
-		    {
+        for(int i=0;i<dimx;i++)
+		{
+			for(int j=0;j<dimy;j++)
+			{
                 if(j!=dimx-1)
             	{            
 		    	    fprintf(fp,"%d %d %d ",p[i][j].red,p[i][j].green,p[i][j].blue);
@@ -183,7 +185,7 @@ void clear(pixel **p,unsigned short r, unsigned short g,unsigned short b){ //Lim
 	{
 		for(int i=0;i<dimx;i++)
 		{
-            color(p[i][j],r,g,b);	
+            p[i][j]=color(p[i][j],r,g,b);	
 		}
     }
 }

@@ -19,5 +19,6 @@ int main(){
     scanf("%d",&r.p2.x);
     scanf("%d",&r.p2.y);
     linha(p,r);
+    save(p);
 return 0;
 }
