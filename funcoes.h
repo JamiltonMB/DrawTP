@@ -1,6 +1,8 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 #include "structs.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int dimx=0,dimy=0;
 
@@ -82,9 +84,9 @@ pixel** abrir_arquivo(char w[50]){ //função para letitura do arquivo
 
 
 void linha(pixel **p,reta r){ //https://gist.github.com/mfilipelino/11240714#file-paintopengl-c
-    int dy = (r.p2.y - r.p1.y); //Diferença entre os pontos y2 e y1
-    int dx = (r.p2.x - r.p1.x); //Diferença entre os pontos x2 e x1
-    int sx,sy; //Variaveis que serão utilizadas para armazenar o sinal de x e y afim de saber o quadrante do segmento
+    int dy = abs(r.p2.y - r.p1.y); //Diferença entre os pontos y2 e y1
+    int dx = abs(r.p2.x - r.p1.x); //Diferença entre os pontos x2 e x1
+    int sx,sy; //Variaveis que serão utilizadas para armazenar o sinal de x e y
     int i=r.p1.y;
     int j=r.p1.x;
     if(r.p1.x<r.p2.x) //Determinar os sinais de x e y
@@ -119,7 +121,7 @@ void linha(pixel **p,reta r){ //https://gist.github.com/mfilipelino/11240714#fil
     while(true)
 	{
 	    p[i][j]=color(p[i][j],0,0,0);
-        if((i==r.p2.y)&&(j==r.p2.x)) // Testa se chegou ao ponto final e encerra o algoritimo
+        if((i==r.p2.y)&&(j==r.p2.x)) // Testa se chegou ao ponto final da reta
         {
             break;
         }
@@ -170,7 +172,7 @@ void save(pixel **p){
 
 void polygon(pixel **p,int l, int x[l],int y[l]){
     reta r;
-    for(int i=1;i<=l;i++)
+    for(int i=1;i<l;i++)
     {
         r.p1.x=x[i-1];
         r.p1.y=y[i-1];
@@ -178,6 +180,9 @@ void polygon(pixel **p,int l, int x[l],int y[l]){
         r.p2.y=y[i];
         linha(p,r);
     }
+    r.p1.x=x[0];
+    r.p1.y=y[0];
+    linha(p,r);
 }
 
 void clear(pixel **p,unsigned short r, unsigned short g,unsigned short b){ //Limpa a imagem setando todos os pixels para uma cor especificada
