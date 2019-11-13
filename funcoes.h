@@ -190,9 +190,35 @@ void clear(pixel **p,unsigned short r, unsigned short g,unsigned short b){ //Lim
 	{
 		for(int i=0;i<dimx;i++)
 		{
-            p[i][j]=color(p[i][j],r,g,b);	
+            	p[i][j]=color(p[i][j],r,g,b);	
 		}
-    }
+    	}
+}
+
+void react(pixel **p, int x, int y, int A, int L){//FUNÇÃO PARA DESENHAR RETÂNGULOS
+reta r;
+for(int i=1; i<=4; i++)
+	{
+	if(i==1 || i==2)
+		{
+		r.p1.x=x;
+		r.p1.y=y;
+		r.p2.x=(x+L);
+		r.p2.y=y;
+		linha(p, r);
+		if(i==1){y=y+A;}else{y=y-A;}
+		}
+	else{
+		r.p1.x=x;
+		r.p1.y=y;
+		r.p2.x=x;
+		r.p2.y=(y+A);
+		linha(p, r);
+		x=x+L;
+		}
+	}
+
+
 }
 
 #endif
