@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int dimx=0,dimy=0;
+int dimx,dimy;
 
 pixel** allocar(int L, int C) {
   int i;
@@ -194,6 +194,63 @@ void clear(pixel **p,unsigned short r, unsigned short g,unsigned short b){ //Lim
 		}
     	}
 }
+
+void circulo(pixel **p,ponto c,int r){ // https://www.geeksforgeeks.org/bresenhams-circle-drawing-algorithm/
+    //Função criada com algoritimo de Bresenham, através dos conhecimentos do pdf disponibilizados pelo professor juntamente com o link adicionado acima
+    int xc, yc;
+    xc=c.x;
+    yc=c.y;
+    int x = 0;
+    int y = r;
+
+    int d = 1 - r;
+    
+    p[xc + x][yc + y]=color(p[xc + x][yc + y],0,0,0);
+    p[xc - x][yc + y]=color(p[xc - x][yc + y],0,0,0);
+    p[xc + x][yc - y]=color(p[xc + x][yc - y],0,0,0);
+    p[xc - x][yc - y]=color(p[xc - x][yc - y],0,0,0);
+    p[xc + y][yc + x]=color(p[xc + y][yc + x],0,0,0);
+    p[xc - y][yc + x]=color(p[xc - y][yc + x],0,0,0);
+    p[xc + y][yc - x]=color(p[xc + y][yc - x],0,0,0);
+    p[xc - y][yc - x]=color(p[xc - y][yc - x],0,0,0);
+
+    while(x <= y){
+        x++;
+        if(d < 0){
+            d = d + 2*x + 1;
+        }
+        else{
+            y--;
+            d = d + 2*(x-y) + 1;
+        }
+
+    p[xc + x][yc + y]=color(p[xc + x][yc + y],0,0,0);
+    p[xc - x][yc + y]=color(p[xc - x][yc + y],0,0,0);
+    p[xc + x][yc - y]=color(p[xc + x][yc - y],0,0,0);
+    p[xc - x][yc - y]=color(p[xc - x][yc - y],0,0,0);
+    p[xc + y][yc + x]=color(p[xc + y][yc + x],0,0,0);
+    p[xc - y][yc + x]=color(p[xc - y][yc + x],0,0,0);
+    p[xc + y][yc - x]=color(p[xc + y][yc - x],0,0,0);
+    p[xc - y][yc - x]=color(p[xc - y][yc - x],0,0,0);
+    }
+}
+
+void fill(pixel **p,int x,int y,pixel cor){
+    printf("x:%d :\n",x);
+    printf("y:%d :\n",y);
+    if(x<0 || x>=dimx || y<0 || y>=dimy)
+    {
+        return;
+    }
+    
+    p[x][y]=color(p[x][y],cor.red,cor.green,cor.blue);
+    
+    fill(p,x+1,y,cor);
+    fill(p,x,y+1,cor);
+    fill(p,x-1,y,cor);
+    fill(p,x,y-1,cor);        
+}
+
 
 void react(pixel **p, int x, int y, int A, int L){//FUNÇÃO PARA DESENHAR RETÂNGULOS
 reta r;

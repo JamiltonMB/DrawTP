@@ -13,6 +13,19 @@ int main(){
     scanf("%d",&x);
     scanf("%d",&y);
     p=image(x,y);
+    
+    printf("Digite o ponto do centro do circulo e seu raio:\n");
+    ponto c;
+    int raio;
+    scanf("%d",&c.x);
+    scanf("%d",&c.y);
+    scanf("%d",&raio);
+    circulo(p,c,raio);
+    pixel colorido;
+    colorido.red=0;
+    colorido.green=0;
+    colorido.blue=255;
+    fill(p,250,250,colorido);
 
 /*    
 	printf("Digite o x1/y1:\n");
@@ -22,11 +35,10 @@ int main(){
     scanf("%d",&r.p2.x);
     scanf("%d",&r.p2.y);
     linha(p,r);
-*/
-
 	int x1=99, y2=99, A=800, L=800; //Teste da função que desenha retângulos
 	react(p, x1, y2, A, L);
-    
+ */   
+
     save(p);
 return 0;
 }
