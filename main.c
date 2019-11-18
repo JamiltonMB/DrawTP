@@ -25,10 +25,16 @@ int main(){
     colorido.red=0;
     colorido.green=0;
     colorido.blue=255;
-    fill(p,250,250,colorido);
+    pixel borda;
+    borda.red=0;
+    borda.green=0;
+    borda.blue=0;
+    fill(p,c.x,c.y,colorido,borda);
+    react(p,50,50,100,100);
+    fill(p,51,51,colorido,borda);
 
 /*    
-	printf("Digite o x1/y1:\n");
+    printf("Digite o x1/y1:\n");
     scanf("%d",&r.p1.x);
     scanf("%d",&r.p1.y);
     printf("Digite o x2/y2:\n");
