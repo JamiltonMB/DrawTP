@@ -24,5 +24,14 @@ enum Bool
     true = 1
 };
 
+typedef struct espec_s{   //STRUCT PARA ARMAZENAR O ARQUIVO DE ESPECIFICAÇÃO
+int image[2], clear[3], color[50][3], line[50][4], polygon[50][7], circle[50][3], fill[50][2],rect[50][4];
+char save[50];
+}espec;
+
+typedef struct t_tipos_s{
+int color_t, line_t, polygon_t, circle_t, fill_t, rect_t;
+}t_tipos;
+
 #endif
 
