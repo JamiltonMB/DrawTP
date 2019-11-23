@@ -4,13 +4,15 @@
 #include <gtk/gtk.h>
 
 GtkWidget *window, *image, *button, *grid, *frame, *box, *txt_view, *scrolled_window, *entry, *label;
+const gchar *entry_text;
+gchar *v_texto;
 
 GtkTextBuffer *buffer;
 GtkTextIter start, end;
 GtkTextIter iter;
 
 
-char nome_espec[50] = "espec.txt";
+char nome_espec[50]="espec.txt";
 char nome_image[50];
 
 int contar_spec(char n[50]){ //FUNÇÃO QUE CONTA A QUANTIDADE DE LINHAS DO ARQUIVO --- REPETIDA=========   
@@ -68,9 +70,9 @@ void ler_spc(char n[50], char i_nome[50]){ //FUNÇÃO REPETIDA, RETIRAR DEPOIS D
         }
 }
 
-void vet_espec(int t, char vet_spc[t][50], char n[50]){
+void vet_espec(int t, char vet_spc[t][50], char n[50], char str[t*50]){
 
-    int i=0;
+    int i=0, y=0, j=0;
     char linha[50];
     FILE *arq = fopen(n, "r");
 	if(arq == NULL)
@@ -84,27 +86,36 @@ void vet_espec(int t, char vet_spc[t][50], char n[50]){
             fgets(linha, 50, arq);
             strcpy(vet_spc[i], linha);
             }
+        for(i=0; i<t; i++)
+            {
+            strcat(str, vet_spc[i]);
+
+            }
         }
 }
 
+
 static void button_clicked(gpointer data)
 {
-//gtk_text_iter_starts_line(&iter);
-char teste[50]="eistafdfsdfdf\nteste";
-gtk_text_buffer_get_bounds(buffer, &start, &end);
-gtk_text_buffer_delete(buffer, &start, &end);
-gtk_text_buffer_set_text(buffer, teste, -1);
-g_print("Button is pressed\n");
 
-/*
+entry_text = gtk_entry_get_text (GTK_ENTRY (entry));
+//g_print("Entry contents: %s\n", entry_text);
+strcpy(nome_espec, entry_text);
+//printf("%s\n", nome_espec);
+char teste[50];// por algum motivo o código só roda se essa variável exisitir, foi possuído pelo capeta, só pode!
 int tl=contar_spec(nome_espec);
 char vet_spc[tl][50];
-vet_espec(tl, vet_spc, nome_espec);
-for(int i=0; i<tl; i++)
-    {
-    gtk_text_buffer_insert(buffer, &iter, vet_spc[i], -1);
-    }
-*/
+char str[tl*50];
+char *texto;
+
+vet_espec(tl, vet_spc, nome_espec, str);
+gtk_text_buffer_set_text(buffer, str, -1);
+
+gtk_text_buffer_get_bounds (buffer, &start, &end);
+v_texto = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+//g_print ("%s", v_texto);
+g_free (v_texto);
+
 }
 
 
@@ -136,9 +147,11 @@ grid = gtk_grid_new();
 entry = gtk_entry_new ();
 label = gtk_label_new ("   ARQUIVO DE \nESPECIFICAÇÃO: ");
 gtk_entry_set_max_length (GTK_ENTRY(entry), 49);
+
 gtk_entry_set_text (GTK_ENTRY(entry), nome_espec);
 
 buffer = gtk_text_buffer_new (NULL);
+//buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txt_view));
 txt_view = gtk_text_view_new_with_buffer (buffer);
 gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (txt_view), GTK_WRAP_WORD);
 scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -148,9 +161,8 @@ gtk_scrolled_window_set_min_content_width(GTK_SCROLLED_WINDOW (scrolled_window),
 gtk_container_add (GTK_CONTAINER (scrolled_window), txt_view);
 gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 5);
 
-gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
+//gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
 g_signal_connect(button,"clicked", G_CALLBACK(button_clicked), NULL);
-
 
 gtk_grid_attach (GTK_GRID (grid), scrolled_window, 0, 0, 3, 1);
 gtk_grid_attach (GTK_GRID (grid), label, 0, 2, 1, 1);
