@@ -70,9 +70,9 @@ void ler_spc(char n[50], char i_nome[50]){ //FUNÇÃO REPETIDA, RETIRAR DEPOIS D
         }
 }
 
-void vet_espec(int t, char vet_spc[t][50], char n[50], char str[t*50]){
+void get_espec(int t, char n[50], char str[t*50]){
 
-    int i=0, y=0, j=0;
+    int i=0;
     char linha[50];
     FILE *arq = fopen(n, "r");
 	if(arq == NULL)
@@ -84,14 +84,34 @@ void vet_espec(int t, char vet_spc[t][50], char n[50], char str[t*50]){
         for(i=0; i<t; i++)
             {
             fgets(linha, 50, arq);
-            strcpy(vet_spc[i], linha);
+            strcat(str, linha);
             }
-        for(i=0; i<t; i++)
-            {
-            strcat(str, vet_spc[i]);
-
-            }
+        //printf("%s\n", str);
+        fclose(arq);
         }
+}
+
+
+
+
+static void button_salvar(gpointer data)
+{
+gtk_text_buffer_get_bounds (buffer, &start, &end);
+v_texto = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+//g_print ("%s", v_texto);
+//printf("%s\n", v_texto);
+
+FILE *arq = fopen(nome_espec, "w");
+if(arq == NULL)
+    {
+    printf("Erro na abertura do arquivo");
+    }
+else
+    {
+    fputs(v_texto, arq);
+    fclose(arq);
+    }
+g_free (v_texto);
 }
 
 
@@ -102,19 +122,13 @@ entry_text = gtk_entry_get_text (GTK_ENTRY (entry));
 //g_print("Entry contents: %s\n", entry_text);
 strcpy(nome_espec, entry_text);
 //printf("%s\n", nome_espec);
-char teste[50];// por algum motivo o código só roda se essa variável exisitir, foi possuído pelo capeta, só pode!
+//char teste[50];// por algum motivo o código só roda se essa variável exisitir, foi possuído pelo capeta, só pode!
 int tl=contar_spec(nome_espec);
-char vet_spc[tl][50];
 char str[tl*50];
-char *texto;
-
-vet_espec(tl, vet_spc, nome_espec, str);
+char aux_str[0];
+strcpy(str, aux_str);
+get_espec(tl, nome_espec, str);
 gtk_text_buffer_set_text(buffer, str, -1);
-
-gtk_text_buffer_get_bounds (buffer, &start, &end);
-v_texto = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
-//g_print ("%s", v_texto);
-g_free (v_texto);
 
 }
 
@@ -169,6 +183,7 @@ gtk_grid_attach (GTK_GRID (grid), label, 0, 2, 1, 1);
 gtk_grid_attach (GTK_GRID (grid), entry, 1, 2, 1, 1);
 gtk_grid_attach (GTK_GRID (grid), button, 2, 2, 1, 1);
 button = gtk_button_new_with_label("SALVAR");
+g_signal_connect(button,"clicked", G_CALLBACK(button_salvar), NULL);
 gtk_grid_attach (GTK_GRID (grid), button, 0, 1, 3, 1);
 
 scrolled_window = gtk_scrolled_window_new (NULL, NULL);
