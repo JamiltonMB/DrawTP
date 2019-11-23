@@ -91,9 +91,6 @@ void get_espec(int t, char n[50], char str[t*50]){
         }
 }
 
-
-
-
 static void button_salvar(gpointer data)
 {
 gtk_text_buffer_get_bounds (buffer, &start, &end);
@@ -114,10 +111,8 @@ else
 g_free (v_texto);
 }
 
-
 static void button_clicked(gpointer data)
 {
-
 entry_text = gtk_entry_get_text (GTK_ENTRY (entry));
 //g_print("Entry contents: %s\n", entry_text);
 strcpy(nome_espec, entry_text);
@@ -129,22 +124,26 @@ char aux_str[0];
 strcpy(str, aux_str);
 get_espec(tl, nome_espec, str);
 gtk_text_buffer_set_text(buffer, str, -1);
-
 }
 
+static void button_atualizar(gpointer data)
+{
+entry_text = gtk_entry_get_text (GTK_ENTRY (entry));
+strcpy(nome_espec, entry_text);
+ler_spc(nome_espec, nome_image);
+//g_print("%s", nome_image);
+gtk_image_set_from_file(GTK_IMAGE(image), nome_image);
+}
 
 static void destroy( GtkWidget *widget, gpointer data)
 {
     gtk_main_quit ();
 }
 
-
 int main(int argc, char *argv[]) {
 
 ler_spc(nome_espec, nome_image); //QUANDO JUNTAR OS ARQUIVOS ESSA FUNÇÃO DEVE SER MUDADA
     
-
-  
 gtk_init(&argc, &argv);
 
 window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -162,7 +161,7 @@ entry = gtk_entry_new ();
 label = gtk_label_new ("   ARQUIVO DE \nESPECIFICAÇÃO: ");
 gtk_entry_set_max_length (GTK_ENTRY(entry), 49);
 
-gtk_entry_set_text (GTK_ENTRY(entry), nome_espec);
+gtk_entry_set_text(GTK_ENTRY(entry), nome_espec);
 
 buffer = gtk_text_buffer_new (NULL);
 //buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txt_view));
@@ -185,6 +184,8 @@ gtk_grid_attach (GTK_GRID (grid), button, 2, 2, 1, 1);
 button = gtk_button_new_with_label("SALVAR");
 g_signal_connect(button,"clicked", G_CALLBACK(button_salvar), NULL);
 gtk_grid_attach (GTK_GRID (grid), button, 0, 1, 3, 1);
+button = gtk_button_new_with_label("ATUALIZAR IMAGEM");
+gtk_grid_attach (GTK_GRID (grid), button, 0, 3, 3, 1);
 
 scrolled_window = gtk_scrolled_window_new (NULL, NULL);
 gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -208,6 +209,8 @@ gtk_container_add (GTK_CONTAINER (frame), grid);
 gtk_box_pack_start(GTK_BOX(box), frame, 0, 0, 1);
 
 gtk_container_add(GTK_CONTAINER(window), box);
+
+g_signal_connect(button,"clicked", G_CALLBACK(button_atualizar), NULL);
 
 gtk_widget_show_all(window);
 gtk_main();
