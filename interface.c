@@ -105,6 +105,7 @@ if(arq == NULL)
     }
 else
     {
+    strcat(v_texto, "\n");
     fputs(v_texto, arq);
     fclose(arq);
     }
