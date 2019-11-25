@@ -14,7 +14,7 @@ GtkTextIter start, end;
 GtkTextIter iter;
 
 char nome_espec[50];
-char nome_image[50] = "imagem.ppm";
+char nome_image[50]="imagem.ppm";
 
 void get_espec(int t, char n[50], char str[t * 50])
 {
@@ -41,7 +41,8 @@ static void button_salvar(gpointer data)
 {
     gtk_text_buffer_get_bounds(buffer, &start, &end);
     v_texto = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
-
+    entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
+    strcpy(nome_espec, entry_text);
     FILE *arq = fopen(nome_espec, "w");
     if (arq == NULL)
     {
@@ -49,6 +50,7 @@ static void button_salvar(gpointer data)
     }
     else
     {
+        strcat(v_texto, "\n");
         fputs(v_texto, arq);
         fclose(arq);
     }
@@ -71,8 +73,9 @@ static void button_atualizar(gpointer data)
 {
     entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
     strcpy(nome_espec, entry_text);
-    ler_spc(nome_espec, nome_image);
-    gtk_image_set_from_file(GTK_IMAGE(image), nome_image);
+    espec img;
+    img = ler_tudo(nome_espec);
+    gtk_image_set_from_file(GTK_IMAGE(image), img.save);
 }
 
 static void destroy(GtkWidget *widget, gpointer data)
@@ -82,7 +85,6 @@ static void destroy(GtkWidget *widget, gpointer data)
 
 int main(int argc, char *argv[])
 {
-
     gtk_init(&argc, &argv);
 
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
