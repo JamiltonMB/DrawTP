@@ -29,7 +29,7 @@ enum Bool
 
 typedef struct espec_s
 { //STRUCT PARA ARMAZENAR O ARQUIVO DE ESPECIFICAÇÃO
-    int image[2], clear[3], color[50][3], line[50][4], polygon[50][7], circle[50][3], fill[50][2], rect[50][4];
+    int image[2], clear[3], color[3], line[4], polygon[7], circle[3], fill[2], rect[4];
     char save[50];
 } espec;
 

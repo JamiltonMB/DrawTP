@@ -55,6 +55,8 @@ static void button_salvar(gpointer data)
         fclose(arq);
     }
     g_free(v_texto);
+    pixel **p;
+    chamar_tudo(p, nome_espec);
 }
 
 static void button_clicked(gpointer data)
