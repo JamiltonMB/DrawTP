@@ -28,9 +28,9 @@ pixel color(pixel p, unsigned short r, unsigned short g, unsigned short b)
 	return p;
 }
 
-pixel **imagem(int x, int y)
+pixel **imagem(char n[50], int x, int y)
 { //Cria uma nova "imagem", com largura e altura especificadas
-	FILE *fp = fopen("n.ppm", "w");
+	FILE *fp = fopen(n, "w");
 	dimx = x;
 	dimy = y;
 	pixel **p = allocar(dimx, dimy);
@@ -143,9 +143,9 @@ void linha(pixel **p, reta r)
 	}
 }
 
-void save(pixel **p)
+void save(pixel **p, char n[50])
 {
-	FILE *fp = fopen("n.ppm", "w");
+	FILE *fp = fopen(n, "w");
 	if (fp == NULL)
 	{
 		printf("Erro na criação do arquivo");
@@ -290,7 +290,7 @@ void fill(pixel **p, int x, int y, pixel cor)
 	fill2(p, x, y, cor, borda);
 }
 
-void react(pixel **p, int x, int y, int A, int L)
+void rect(pixel **p, int y, int x, int L, int A)
 { //FUNÇÃO PARA DESENHAR RETÂNGULOS
 
 	reta r;
@@ -599,8 +599,10 @@ espec ler_spc(char n[50], char tipo[10])
 			for (i = 0; i < (strlen(linha) - 6); i++)
 			{
 				save_aux[i] = linha[(i + 5)];
+                j=i;
 			}
-			save_aux[(strlen(linha))] = '\0';
+			save_aux[j+1] = '\0';
+            j=0;
 			strcpy(a.save, save_aux);
 		}
 	}
@@ -623,5 +625,26 @@ espec ler_tudo(char n[50])
 	a = ler_spc(n, "save");
 	return a;
 }
+void chamar_tudo(pixel **p, char arquivo[50])
+{
+    espec img;
+    t_tipos t_tip;
+    t_tip = tam_tip(arquivo);
+    img = ler_tudo(arquivo);
+    imagem(img.save, img.image[0], img.image[1]);
+    p = abrir_arquivo(img.save);
+    if(t_tip.rect_t>0)
+    {
+        for(int i=0; i<t_tip.rect_t; i++)
+        {                
+            rect(p, img.rect[i][0], img.rect[i][1], img.rect[i][2], img.rect[i][3]);
+        }
+    }
+    save(p, img.save);
+    
+
+}
+
+
 
 #endif
