@@ -30,8 +30,6 @@ int contar_spec(char n[50]); //FUNÇÃO QUE CONTA A QUANTIDADE DE LINHAS DO ARQU
 
 t_tipos tam_tip(char n[50]); //FUNÇÃO QUE CONTA A QUANTIDADE DE TIPOS DO ARQUIVO DE ESPECIFICAÇÃO
 
-espec ler_spc(char n[50], char tipo[10]); //FUNÇÃO PARA LER O ARQUIVO DE ESPECIFICAÇÃO
-
-espec ler_tudo(char n[50]);
+void ler_spc(pixel **p, char n[50]); //FUNÇÃO PARA LER O ARQUIVO DE ESPECIFICAÇÃO
 
 #endif
