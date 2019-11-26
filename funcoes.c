@@ -7,6 +7,7 @@
 
 int dimx;
 int dimy;
+pixel cor;
 
 pixel **allocar(int L, int C)
 {
@@ -34,6 +35,9 @@ pixel **imagem(char n[50], int x, int y)
 	dimx = x;
 	dimy = y;
 	pixel **p = allocar(dimx, dimy);
+	cor.red = 0;
+	cor.green = 0;
+	cor.blue = 0;
 	if (fp == NULL)
 	{
 		printf("Erro na abertura do arquivo");
@@ -45,7 +49,7 @@ pixel **imagem(char n[50], int x, int y)
 		{
 			for (int i = 0; i < dimx; i++)
 			{
-				p[i][j] = color(p[i][j], 255, 255, 255);
+				p[i][j] = color(p[i][j], cor.red, cor.green, cor.blue);
 				if (i != dimx - 1)
 				{
 					fprintf(fp, "%d %d %d ", p[i][j].red, p[i][j].green, p[i][j].blue);
@@ -124,7 +128,7 @@ void linha(pixel **p, reta r)
 	}
 	while (true)
 	{
-		p[i][j] = color(p[i][j], 0, 0, 0);
+		p[i][j] = color(p[i][j], cor.red, cor.green, cor.blue);
 		if ((i == r.p2.y) && (j == r.p2.x)) // Testa se chegou ao ponto final da reta
 		{
 			break;
@@ -232,14 +236,14 @@ void circulo(pixel **p, ponto c, int r)
 	int x = 0;
 	int y = r;
 	int d = 1 - r;
-	p[xc + x][yc + y] = color(p[xc + x][yc + y], 0, 0, 0);
-	p[xc - x][yc + y] = color(p[xc - x][yc + y], 0, 0, 0);
-	p[xc + x][yc - y] = color(p[xc + x][yc - y], 0, 0, 0);
-	p[xc - x][yc - y] = color(p[xc - x][yc - y], 0, 0, 0);
-	p[xc + y][yc + x] = color(p[xc + y][yc + x], 0, 0, 0);
-	p[xc - y][yc + x] = color(p[xc - y][yc + x], 0, 0, 0);
-	p[xc + y][yc - x] = color(p[xc + y][yc - x], 0, 0, 0);
-	p[xc - y][yc - x] = color(p[xc - y][yc - x], 0, 0, 0);
+	p[xc + x][yc + y] = color(p[xc + x][yc + y], cor.red, cor.green, cor.blue);
+	p[xc - x][yc + y] = color(p[xc - x][yc + y], cor.red, cor.green, cor.blue);
+	p[xc + x][yc - y] = color(p[xc + x][yc - y], cor.red, cor.green, cor.blue);
+	p[xc - x][yc - y] = color(p[xc - x][yc - y], cor.red, cor.green, cor.blue);
+	p[xc + y][yc + x] = color(p[xc + y][yc + x], cor.red, cor.green, cor.blue);
+	p[xc - y][yc + x] = color(p[xc - y][yc + x], cor.red, cor.green, cor.blue);
+	p[xc + y][yc - x] = color(p[xc + y][yc - x], cor.red, cor.green, cor.blue);
+	p[xc - y][yc - x] = color(p[xc - y][yc - x], cor.red, cor.green, cor.blue);
 	while (x <= y)
 	{
 		x++;
@@ -252,42 +256,42 @@ void circulo(pixel **p, ponto c, int r)
 			y--;
 			d = d + 2 * (x - y) + 1;
 		}
-		p[xc + x][yc + y] = color(p[xc + x][yc + y], 0, 0, 0);
-		p[xc - x][yc + y] = color(p[xc - x][yc + y], 0, 0, 0);
-		p[xc + x][yc - y] = color(p[xc + x][yc - y], 0, 0, 0);
-		p[xc - x][yc - y] = color(p[xc - x][yc - y], 0, 0, 0);
-		p[xc + y][yc + x] = color(p[xc + y][yc + x], 0, 0, 0);
-		p[xc - y][yc + x] = color(p[xc - y][yc + x], 0, 0, 0);
-		p[xc + y][yc - x] = color(p[xc + y][yc - x], 0, 0, 0);
-		p[xc - y][yc - x] = color(p[xc - y][yc - x], 0, 0, 0);
+		p[xc + x][yc + y] = color(p[xc + x][yc + y], cor.red, cor.green, cor.blue);
+		p[xc - x][yc + y] = color(p[xc - x][yc + y], cor.red, cor.green, cor.blue);
+		p[xc + x][yc - y] = color(p[xc + x][yc - y], cor.red, cor.green, cor.blue);
+		p[xc - x][yc - y] = color(p[xc - x][yc - y], cor.red, cor.green, cor.blue);
+		p[xc + y][yc + x] = color(p[xc + y][yc + x], cor.red, cor.green, cor.blue);
+		p[xc - y][yc + x] = color(p[xc - y][yc + x], cor.red, cor.green, cor.blue);
+		p[xc + y][yc - x] = color(p[xc + y][yc - x], cor.red, cor.green, cor.blue);
+		p[xc - y][yc - x] = color(p[xc - y][yc - x], cor.red, cor.green, cor.blue);
 	}
 }
 
-void fill2(pixel **p, int x, int y, pixel cor, pixel borda)
+void fill2(pixel **p, int x, int y, pixel core, pixel borda)
 { //https://www.geeksforgeeks.org/boundary-fill-algorithm/
 
 	if ((p[x][y].red == borda.red) &&
 		(p[x][y].green == borda.green) &&
 		(p[x][y].blue == borda.blue))
 	{
-		p[x][y] = color(p[x][y], cor.red, cor.green, cor.blue);
+		p[x][y] = color(p[x][y], core.red, core.green, core.blue);
 		if (x + 1 < dimx)
-			fill2(p, x + 1, y, cor, borda);
+			fill2(p, x + 1, y, core, borda);
 		if (x - 1 >= 0)
-			fill2(p, x - 1, y, cor, borda);
+			fill2(p, x - 1, y, core, borda);
 		if (y + 1 < dimy)
-			fill2(p, x, y + 1, cor, borda);
+			fill2(p, x, y + 1, core, borda);
 		if (y - 1 >= 0)
-			fill2(p, x, y - 1, cor, borda);
+			fill2(p, x, y - 1, core, borda);
 	}
 }
-void fill(pixel **p, int x, int y, pixel cor)
+void fill(pixel **p, int x, int y, pixel core)
 {
 	pixel borda;
 	borda.red = p[x][y].red;
 	borda.blue = p[x][y].blue;
 	borda.green = p[x][y].green;
-	fill2(p, x, y, cor, borda);
+	fill2(p, x, y, core, borda);
 }
 
 void rect(pixel **p, int y, int x, int L, int A)
@@ -325,8 +329,8 @@ void rect(pixel **p, int y, int x, int L, int A)
 }
 
 int contar_spec(char n[50])
-{ //FUNÇÃO QUE CONTA A QUANTIDADE DE LINHAS DO ARQUIVO
-	int linhas = 0;
+{ //FUNÇÃO QUE CONTA A QUANTIDADE DE linha2S DO ARQUIVO
+	int linha2s = 0;
 	char c, f = '\n';
 	FILE *arq = fopen(n, "r");
 	if (arq == NULL)
@@ -339,13 +343,13 @@ int contar_spec(char n[50])
 		{
 			if (c == f)
 			{
-				linhas++;
+				linha2s++;
 			}
 		}
 		fclose(arq);
 	}
 
-	return linhas;
+	return linha2s;
 }
 
 t_tipos tam_tip(char n[50])
@@ -358,7 +362,7 @@ t_tipos tam_tip(char n[50])
 	a.fill_t = 0;
 	a.rect_t = 0;
 	int i = 0;
-	char linha[50];
+	char linha2[50];
 	char l_aux[50];
 	char comparador[4];
 	FILE *arq = fopen(n, "r");
@@ -370,9 +374,9 @@ t_tipos tam_tip(char n[50])
 	{
 		for (i = 0; i < (contar_spec(n)); i++)
 		{
-			fgets(linha, 50, arq);
-			strcpy(l_aux, linha);
-			memcpy(comparador, &linha[0], 4);
+			fgets(linha2, 50, arq);
+			strcpy(l_aux, linha2);
+			memcpy(comparador, &linha2[0], 4);
 			comparador[4] = '\0';
 			if (strcmp(comparador, "colo") == 0)
 			{
@@ -409,16 +413,16 @@ espec ler_save(char n[50])
 	espec a;
 	FILE *arq = fopen(n, "r");
 	FILE *aux = fopen("aux.txt", "w");
-	char linha[50];
+	char linha2[50];
 	char l_aux[50];
 	char comparador[4];
 	char save_aux[50];
 	int i, j;
 	for (i = 0; i < (contar_spec(n)); i++)
 	{
-		fgets(linha, 50, arq);
-		strcpy(l_aux, linha);
-		memcpy(comparador, &linha[0], 4);
+		fgets(linha2, 50, arq);
+		strcpy(l_aux, linha2);
+		memcpy(comparador, &linha2[0], 4);
 		comparador[4] = '\0';
 		if (strcmp(comparador, "save") == 0)
 		{
@@ -426,17 +430,17 @@ espec ler_save(char n[50])
 		}
 	}
 	fclose(aux);
-	FILE *aux = fopen("aux.txt", "r");
-	fgets(linha, 50, aux);
-	for (i = 0; i < (strlen(linha) - 6); i++)
+	FILE *aux1 = fopen("aux.txt", "r");
+	fgets(linha2, 50, aux1);
+	for (i = 0; i < (strlen(linha2) - 6); i++)
 	{
-		save_aux[i] = linha[(i + 5)];
+		save_aux[i] = linha2[(i + 5)];
 		j = i;
 	}
 	save_aux[j + 1] = '\0';
 	j = 0;
 	strcpy(a.save, save_aux);
-	fclose(aux);
+	fclose(aux1);
 	fclose(arq);
 	return a;
 }
@@ -448,27 +452,28 @@ void ler_spc(pixel **p, char n[50])
 	a = ler_save(n);
 	//t_tipos tam = tam_tip(n);
 	int i = 0;
-	char linha[50];
+	char linha2[50];
 	char l_aux[50];
 	char comparador[4];
-	char save_aux[50];
 	FILE *arq = fopen(n, "r");
 	FILE *aux = fopen("aux.txt", "w");
 	if (aux == NULL)
 	{
 		printf("Erro na abertura do arquivo");
+		return;
 	}
 	if (arq == NULL)
 	{
 		printf("Erro na abertura do arquivo");
+		return;
 	}
 	else
 	{
 		for (i = 0; i < (contar_spec(n)); i++)
 		{
-			fgets(linha, 50, arq);
-			strcpy(l_aux, linha);
-			memcpy(comparador, &linha[0], 4);
+			fgets(linha2, 50, arq);
+			strcpy(l_aux, linha2);
+			memcpy(comparador, &linha2[0], 4);
 			comparador[4] = '\0';
 
 			if (strcmp(comparador, "colo") == 0)
@@ -478,8 +483,8 @@ void ler_spc(pixel **p, char n[50])
 				FILE *aux = fopen("aux.txt", "r");
 				fscanf(aux, "color %d %d %d\n", &a.color[0], &a.color[1], &a.color[2]);
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
-				color(p, &a.color[0], &a.color[1], &a.color[2]);
+				aux = fopen("aux.txt", "w");
+				cor = color(cor, a.color[0], a.color[1], a.color[2]);
 			}
 			else if (strcmp(comparador, "line") == 0)
 			{
@@ -488,12 +493,12 @@ void ler_spc(pixel **p, char n[50])
 				FILE *aux = fopen("aux.txt", "r");
 				fscanf(aux, "line %d %d %d %d\n", &a.line[0], &a.line[1], &a.line[2], &a.line[3]);
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
+				aux = fopen("aux.txt", "w");
 				reta r;
-				r.p1.x = line[0];
-				r.p1.y = line[1];
-				r.p2.x = line[2];
-				r.p2.y = line[3];
+				r.p1.x = a.line[0];
+				r.p1.y = a.line[1];
+				r.p2.x = a.line[2];
+				r.p2.y = a.line[3];
 				linha(p, r);
 			}
 			else if (strcmp(comparador, "poly") == 0)
@@ -501,23 +506,23 @@ void ler_spc(pixel **p, char n[50])
 				fputs(l_aux, aux);
 				fclose(aux);
 				FILE *aux = fopen("aux.txt", "r");
-				fscanf(aux, "polygon %d %d %d %d %d %d %d\n", &a.polygon[0], &a.polygon[1], &a.polygon[2], &a.polygon[3], &a.polygon[4], &a.polygon[5], &a.polygon[6]); // só funciona pra 3 pontos, rever depois
+				//fscanf(aux, "polygon %d %d %d %d %d %d %d\n", &a.polygon[0], &a.polygon[1], &a.polygon[2], &a.polygon[3], &a.polygon[4], &a.polygon[5], &a.polygon[6]); // só funciona pra 3 pontos, rever depois
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
-				polygon(p, int l, int x[l], int y[l]);
+				aux = fopen("aux.txt", "w");
+				//polygon(p, int l, int x[l], int y[l]);
 			}
 			else if (strcmp(comparador, "circ") == 0)
 			{
 				fputs(l_aux, aux);
 				fclose(aux);
 				FILE *aux = fopen("aux.txt", "r");
-					fscanf(aux, "circle %d %d %d\n", &a.circle[[0], &a.circle[1], &a.circle[2]);
-					fclose(aux);
-					FILE *aux = fopen("aux.txt", "w");
-					ponto c;
-					c.x=a.circle[[0];
-                    c.y=a.circle[[1];
-                    circulo(p, c, a.circle[2]);
+				fscanf(aux, "circle %d %d %d\n", &a.circle[0], &a.circle[1], &a.circle[2]);
+				fclose(aux);
+				aux = fopen("aux.txt", "w");
+				ponto c;
+				c.x = a.circle[0];
+				c.y = a.circle[1];
+				circulo(p, c, a.circle[2]);
 			}
 			else if (strcmp(comparador, "fill") == 0)
 			{
@@ -526,8 +531,7 @@ void ler_spc(pixel **p, char n[50])
 				FILE *aux = fopen("aux.txt", "r");
 				fscanf(aux, "fill %d %d\n", &a.fill[0], &a.fill[1]);
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
-				pixel cor;
+				aux = fopen("aux.txt", "w");
 				//falta implementar a função color da forma correta
 				fill(p, a.fill[0], a.fill[1], cor);
 			}
@@ -538,8 +542,7 @@ void ler_spc(pixel **p, char n[50])
 				FILE *aux = fopen("aux.txt", "r");
 				fscanf(aux, "rect %d %d %d %d\n", &a.rect[0], &a.rect[1], &a.rect[2], &a.rect[3]);
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
-				pixel cor;
+				aux = fopen("aux.txt", "w");
 				//falta implementar a função color da forma correta
 				rect(p, a.rect[1], a.rect[0], a.rect[3], a.rect[2]);
 			}
@@ -550,8 +553,8 @@ void ler_spc(pixel **p, char n[50])
 				FILE *aux = fopen("aux.txt", "r");
 				fscanf(aux, "image %d %d\n", &a.image[0], &a.image[1]);
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
-				imagem(char n[50], a.image[0], a.image[1]);
+				aux = fopen("aux.txt", "w");
+				imagem(n, a.image[0], a.image[1]);
 			}
 			else if (strcmp(comparador, "clea") == 0)
 			{
@@ -560,9 +563,10 @@ void ler_spc(pixel **p, char n[50])
 				FILE *aux = fopen("aux.txt", "r");
 				fscanf(aux, "clear %d %d %d\n", &a.clear[0], &a.clear[1], &a.clear[2]);
 				fclose(aux);
-				FILE *aux = fopen("aux.txt", "w");
+				aux = fopen("aux.txt", "w");
 				clear(p, a.clear[0], a.clear[1], a.clear[2]);
 			}
 		}
 	}
+}
 #endif
