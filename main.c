@@ -15,6 +15,7 @@ GtkTextIter iter;
 
 char nome_espec[50];
 char nome_image[50]="imagem.ppm";
+pixel **p;
 
 void get_espec(int t, char n[50], char str[t * 50])
 {
@@ -55,8 +56,7 @@ static void button_salvar(gpointer data)
         fclose(arq);
     }
     g_free(v_texto);
-    pixel **p;
-    chamar_tudo(p, nome_espec);
+    ler_spc(p, nome_espec);
 }
 
 static void button_clicked(gpointer data)
@@ -75,14 +75,14 @@ static void button_atualizar(gpointer data)
 {
     entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
     strcpy(nome_espec, entry_text);
-    espec img;
-    img = ler_tudo(nome_espec);
-    gtk_image_set_from_file(GTK_IMAGE(image), img.save);
+    ler_spc(p,nome_espec);
+    gtk_image_set_from_file(GTK_IMAGE(p), img.save);//perguntar a jamilton
 }
 
 static void destroy(GtkWidget *widget, gpointer data)
 {
     gtk_main_quit();
+    free(p);
 }
 
 int main(int argc, char *argv[])
