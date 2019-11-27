@@ -128,7 +128,7 @@ void linha(pixel **p, reta r)      // Função de desenhos de linhas
 	}
 	while (true)
 	{
-		p[i][j] = color(p[i][j], cor.red, cor.green, cor.blue);
+		p[i][j] = color(p[i][j], 0, 0, 0); //  ATENÇÃO: >>>> MODIFIQUEI ESSES VALORES PARA TESTES
 		if ((i == r.p2.y) && (j == r.p2.x)) // Testa se chegou ao ponto final da reta
 		{
 			break;
@@ -584,5 +584,13 @@ void ler_spc(pixel **p, char n[50])
 			}
 		}
 	}
+}
+void debugadora(pixel **p, char arquivo[50])//função para DEBUG
+{
+    char img_nome[50];
+    ler_save(arquivo, img_nome);
+    p = abrir_arquivo(img_nome);               
+    rect(p, 0, 0, 100, 100);
+    save(p, img_nome);  
 }
 #endif
