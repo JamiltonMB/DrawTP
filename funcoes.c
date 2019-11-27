@@ -178,42 +178,18 @@ void save(pixel **p, char n[50])
 
 void polygon(pixel **p, int l, int x[l], int y[l])
 {
-	ponto p_ant;
-	ponto p_atual;
-	if ((x[0] != x[l]) && (y[0] != y[l]))
+	reta r;
+	for (int i = 1; i < l; i++)
 	{
-		printf("Poligono inválido");
+		r.p1.x = x[i - 1];
+		r.p1.y = y[i - 1];
+		r.p2.x = x[i];
+		r.p2.y = y[i];
+		linha(p, r);
 	}
-	else
-	{
-		int i = 0;
-		if (l > 0)
-		{
-			p_ant.x = x[i];
-			p_ant.y = y[i];
-			i++;
-			l = l - 1;
-			reta *r;
-			r = malloc(l * sizeof(int));
-			do
-			{
-				p_atual.x = x[i];
-				p_atual.y = y[i];
-				r[i].p1.x = p_ant.x;
-				r[i].p1.y = p_ant.y;
-				r[i].p2.x = p_atual.x;
-				r[i].p2.y = p_atual.y;
-
-				linha(p, r[i]);
-
-				i++;
-				l = l - 1;
-				p_ant.x = p_atual.x;
-				p_ant.y = p_atual.y;
-			} while (l > 0);
-			free(r);
-		}
-	}
+	r.p1.x = x[0];
+	r.p1.y = y[0];
+	linha(p, r);
 }
 
 void clear(pixel **p, unsigned short r, unsigned short g, unsigned short b)
