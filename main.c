@@ -35,8 +35,6 @@ void get_espec(int t, char n[50], char str[t * 50])
             strcat(str, linha);
         }
         fclose(arq);
-	free(n);
-	free(str);
     }
 }
 
