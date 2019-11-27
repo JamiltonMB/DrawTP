@@ -1,0 +1,6 @@
+image 800 600
+circle 400 300 50
+color 0 0 255
+fill 400 300
+
+
