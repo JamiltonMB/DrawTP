@@ -35,6 +35,8 @@ void get_espec(int t, char n[50], char str[t * 50])
             strcat(str, linha);
         }
         fclose(arq);
+	free(n);
+	free(str);
     }
 }
 
@@ -75,8 +77,8 @@ static void button_atualizar(gpointer data)
 {
     entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
     strcpy(nome_espec, entry_text);
-    ler_spc(p,nome_espec);
-    gtk_image_set_from_file(GTK_IMAGE(p), img.save);//perguntar a jamilton
+    ler_save(nome_espec, nome_image);
+    gtk_image_set_from_file(GTK_IMAGE(image), nome_image);
 }
 
 static void destroy(GtkWidget *widget, gpointer data)

@@ -35,3 +35,4 @@ void ler_spc(pixel **p, char n[50]); //FUNÇÃO PARA LER O ARQUIVO DE ESPECIFICA
 espec ler_image(char spc_n[50], char img_n[50]);//Função que armazena o tamanho da imagem lido no arquivo de especificação
 
 #endif
+
