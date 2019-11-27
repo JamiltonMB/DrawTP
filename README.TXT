@@ -1,4 +1,5 @@
 NOME DO PROJETO(SOFTWARE): DrawTP
+link: https://github.com/JamiltonMB/DrawTP
 
 1 - DESCRIÇÃO: DrawTP é um programa de desenho gráfico, onde as imagens são representadas por pixels, ou seja, representação ponto-a-ponto da imagem. O software gera e manipula imagens no formato PPM, usando o padrão RGB, onde cada componente do pixel pode receber um valor máximo de 255. As chamadas das funções são realizadas através do arquivo de especificação, que trata-se de um arquivo.txt onde são informadas as primitvas gráticas com seus respectivos valores. Abaixo podemos ver como cada informação deve ser colocada no arquivo .txt:
 
@@ -26,7 +27,7 @@ SALVAR: O usuário pode usar esse botão para duas atividades: 1 - Salvar altera
 
 ATUALIZAR: Ler o nome do arquivo .ppm, que foi inserido no arquivo de espeficição informado no campo que recebe o nome do arquivo, após a leitura a imagem será exibida em um frame no canto esquerdo da janela do programa.
 
-2 - LIMITAÇÕES: O DrawTP não mostra as alterações realizadas na imagem em tempo real, pois não usada nenhuma API gráfica de desenho.
+2 - LIMITAÇÕES: O DrawTP não mostra as alterações realizadas na imagem em tempo real, pois não usada nenhuma API gráfica de desenho. O usuário não pode usar o nome "aux.txt" para o arquivo de especificação, pois ele é reservado para uso do programa.
 
 3 - FUTURAS MODIFICAÇÕES: Melhorar a interativdade com o usário através da implementaçaõ de APIs de desenho gráfico.
 
@@ -43,4 +44,4 @@ Contribuição individual:
 
 Jamilton Medeiros Barbosa - Primeira versão do programa com a função image e alocação dinâmica de memória, funções de leitura do arquivo de especificação, função de desenho de retângulos, desenvolvimento da interface gráfica com o GTK;
 
-Fernando Breno dos Santos Barbosa - Segunda versão do programa com a nova função image, funções de desenho de: retas, círculos e polígonos, função fill, modularização do programa, organização do código.
+Fernando Breno dos Santos Barbosa - Segunda versão do programa com a nova função image, funções de desenho de: retas, círculos e polígonos, função fill, modularização do programa, organização do código, uso do valgrind.
