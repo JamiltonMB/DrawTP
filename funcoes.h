@@ -28,8 +28,6 @@ void react(pixel **p, int x, int y, int A, int L); //FUNÇÃO PARA DESENHAR RET�
 
 int contar_spec(char n[50]); //FUNÇÃO QUE CONTA A QUANTIDADE DE LINHAS DO ARQUIVO
 
-t_tipos tam_tip(char n[50]); //FUNÇÃO QUE CONTA A QUANTIDADE DE TIPOS DO ARQUIVO DE ESPECIFICAÇÃO
-
 void ler_spc(pixel **p, char n[50]); //FUNÇÃO PARA LER O ARQUIVO DE ESPECIFICAÇÃO
 
 #endif

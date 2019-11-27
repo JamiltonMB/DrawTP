@@ -22,62 +22,6 @@ int contar_spec(char n[50])
 	return linha2s;
 }
 
-t_tipos tam_tip(char n[50])
-{ //FUNÇÃO QUE CONTA A QUANTIDADE DE TIPOS DO ARQUIVO DE ESPECIFICAÇÃO
-	t_tipos a;
-	a.color_t = 0;
-	a.line_t = 0;
-	a.polygon_t = 0;
-	a.circle_t = 0;
-	a.fill_t = 0;
-	a.rect_t = 0;
-	int i = 0;
-	char linha2[50];
-	char l_aux[50];
-	char comparador[4];
-	FILE *arq = fopen(n, "r");
-	if (arq == NULL)
-	{
-		printf("Erro na abertura do arquivo");
-	}
-	else
-	{
-		for (i = 0; i < (contar_spec(n)); i++)
-		{
-			fgets(linha2, 50, arq);
-			strcpy(l_aux, linha2);
-			memcpy(comparador, &linha2[0], 4);
-			comparador[4] = '\0';
-			if (strcmp(comparador, "colo") == 0)
-			{
-				a.color_t++;
-			}
-			else if (strcmp(comparador, "line") == 0)
-			{
-				a.line_t++;
-			}
-			else if (strcmp(comparador, "poly") == 0)
-			{
-				a.polygon_t++;
-			}
-			else if (strcmp(comparador, "circ") == 0)
-			{
-				a.circle_t++;
-			}
-			else if (strcmp(comparador, "fill") == 0)
-			{
-				a.fill_t++;
-			}
-			else if (strcmp(comparador, "rect") == 0)
-			{
-				a.rect_t++;
-			}
-		}
-		fclose(arq);
-	}
-	return a;
-}
-
 espec ler_save(char n[50])
 {
 	espec a;

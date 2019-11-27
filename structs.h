@@ -33,9 +33,4 @@ typedef struct espec_s
     char save[50];
 } espec;
 
-typedef struct t_tipos_s
-{
-    int color_t, line_t, polygon_t, circle_t, fill_t, rect_t;
-} t_tipos;
-
 #endif

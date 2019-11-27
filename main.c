@@ -76,7 +76,7 @@ static void button_atualizar(gpointer data)
     entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
     strcpy(nome_espec, entry_text);
     ler_save(nome_espec, nome_image);
-    debugadora(p, nome_espec);//função para debug do código, retirar depois
+    //debugadora(p, nome_espec);//função para debug do código, retirar depois
     gtk_image_set_from_file(GTK_IMAGE(image), nome_image);//perguntar a jamilton
 }
 
