@@ -1,0 +1,706 @@
+\section{Referência do Arquivo funcoes.\+h}
+\label{funcoes_8h}\index{funcoes.\+h@{funcoes.\+h}}
+{\ttfamily \#include \char`\"{}structs.\+h\char`\"{}}\newline
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ pixel} $\ast$$\ast$ \textbf{ allocar} (int L, int C)
+\begin{DoxyCompactList}\small\item\em Variavéis para armazenar o tamanho da imagem em edição durante a execução do programa. \end{DoxyCompactList}\item 
+\textbf{ pixel} \textbf{ color} (\textbf{ pixel} \textbf{ p}, unsigned short r, unsigned short g, unsigned short b)
+\begin{DoxyCompactList}\small\item\em F\+U\+NÇÃO DE A\+L\+O\+C\+AÇÃO D\+I\+NÂ\+M\+I\+CA DE MÉ\+M\+O\+R\+IA\+: recebe dois inteiros L e C, que serão usados como referência para a alocação dinâmica de memória em uma matriz. \end{DoxyCompactList}\item 
+\textbf{ pixel} $\ast$$\ast$ \textbf{ imagem} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Recebe um pixel e 3 valores(R\+GB 0-\/255) e retorna o pixel recebico com a nova cor passada. \end{DoxyCompactList}\item 
+\textbf{ pixel} $\ast$$\ast$ \textbf{ abrir\+\_\+arquivo} (char w[50])
+\begin{DoxyCompactList}\small\item\em Cria uma nova \char`\"{}imagem\char`\"{}(array bidimensional), com largura e altura especificadas(x,y). \end{DoxyCompactList}\item 
+void \textbf{ linha} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, \textbf{ reta} r)
+\begin{DoxyCompactList}\small\item\em Funçao que lê e constroi o array pixel $\ast$$\ast$ de acordo com o arquivo .txt\+: Recebe como parâmetor uma srting com o nome do arquivo para abrir e retorna o array pixel $\ast$$\ast$p;. \end{DoxyCompactList}\item 
+void \textbf{ save} (\textbf{ pixel} $\ast$$\ast$\textbf{ p})
+\begin{DoxyCompactList}\small\item\em Função de desenhos de linhas, recebe duas structs como argumento, pixel e reta, a primeira armazena o vertor de desenho da imagem e a segunda armazena quatro inteiros, sendo que cada par de inteiro repressenta uma posição em pixel. \end{DoxyCompactList}\item 
+void \textbf{ polygon} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, int l, int x[l], int y[l])
+\begin{DoxyCompactList}\small\item\em F\+U\+NÇÃO S\+A\+VE\+: Recebe como paramâmetro uma struct do tipo pixel $\ast$$\ast$, e uma string com o nome do arquivo da imagem. Os dados da matriz de pixel são armazenados do arquivo informado. \end{DoxyCompactList}\item 
+void \textbf{ clear} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, unsigned short r, unsigned short g, unsigned short b)
+\begin{DoxyCompactList}\small\item\em Função de Desenho de polígonos, recebe uma struct pixel, um inteiro l e dois vetores de inteiro x e y com tamanho l, o inteiro l armaneza a quantidade de pontos do polígono e os vetores de inteiro x e y armazem as posições em pixel desses pontos. \end{DoxyCompactList}\item 
+void \textbf{ circulo} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, \textbf{ ponto} c, int r)
+\begin{DoxyCompactList}\small\item\em A função clear recebe três inteiros que serão usados para setar a cor de todos os pixels da imagem, limpando a imagem. \end{DoxyCompactList}\item 
+void \textbf{ fill} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, int x, int y, \textbf{ pixel} \textbf{ cor})
+\begin{DoxyCompactList}\small\item\em Função criada com algoritimo de Bresenham, através dos conhecimentos do pdf disponibilizados pelo professor juntamente com o link adicionado acima. Recebe uma struct do tipo pixel, outra do tipo ponto e um inteiro. O pixel armazena todos os pixel da imagem, o ponto armazena a localização do pixel do centro do círculo e o inteiro r armazena o tamanho do raio do círculo. \end{DoxyCompactList}\item 
+void \textbf{ fill2} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, int x, int y, \textbf{ pixel} core, \textbf{ pixel} borda)
+\item 
+void \textbf{ react} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, int x, int y, int A, int L)
+\begin{DoxyCompactList}\small\item\em Função auxiliar da fill que inicializa os valores de pixel borda. \end{DoxyCompactList}\item 
+int \textbf{ contar\+\_\+spec} (char n[50])
+\item 
+void \textbf{ ler\+\_\+save} (char n[50], char i\+\_\+nome[50])
+\begin{DoxyCompactList}\small\item\em Função que conta a quantidade de linhas do arquivo\+: recebe o nome do arquivo e retorna um inteiro com a quantidade de linhas no arquivo. \end{DoxyCompactList}\item 
+void \textbf{ ler\+\_\+spc} (\textbf{ pixel} $\ast$$\ast$\textbf{ p}, char n[50])
+\begin{DoxyCompactList}\small\item\em Função para ler o nome de um arquivo de imagem .ppm e armazena-\/lo em uma string para manipulação no programa. \end{DoxyCompactList}\item 
+\textbf{ espec} \textbf{ ler\+\_\+image} (char spc\+\_\+n[50], char img\+\_\+n[50])
+\begin{DoxyCompactList}\small\item\em Função para ler o arquivo de especificação e gerar a imagem tal qual escrita no arquivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ dimx}
+\item 
+int \textbf{ dimy}
+\end{DoxyCompactItemize}
+
+
+\subsection{Funções}
+\mbox{\label{funcoes_8h_a463fc0b674c60a7ec4f4cda9dc446afc}} 
+\index{funcoes.\+h@{funcoes.\+h}!abrir\+\_\+arquivo@{abrir\+\_\+arquivo}}
+\index{abrir\+\_\+arquivo@{abrir\+\_\+arquivo}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{abrir\+\_\+arquivo()}
+{\footnotesize\ttfamily \textbf{ pixel}$\ast$$\ast$ abrir\+\_\+arquivo (\begin{DoxyParamCaption}\item[{char}]{w[50] }\end{DoxyParamCaption})}
+
+
+
+Cria uma nova \char`\"{}imagem\char`\"{}(array bidimensional), com largura e altura especificadas(x,y). 
+
+
+
+Definição na linha 69 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+70 \{ \textcolor{comment}{//FUNÇÃO DE LEITURA DO ARQUIVO DE ESPECIFICAÇÃO: Recebe como parâmetor uma srting com o nome do arquivo,
+       a função abre o arquivo e armazena seu conteúdo na struct pixel **p;}
+71     FILE *img = fopen(w, \textcolor{stringliteral}{"r"});
+72     fscanf(img, \textcolor{stringliteral}{"P3\(\backslash\)n%d %d\(\backslash\)n255\(\backslash\)n"}, &dimx, &dimy);
+73     pixel **p;
+74     p = allocar(dimx, dimy);
+75 
+76     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dimy; j++)
+77     \{
+78         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dimx; i++)
+79         \{
+80             \textcolor{keywordflow}{if} (i != dimx - 1)
+81             \{
+82                 fscanf(img, \textcolor{stringliteral}{"%hd %hd %hd "}, &p[i][j].red, &p[i][j].green, &p[i][j].blue);
+83             \}
+84             \textcolor{keywordflow}{else}
+85             \{
+86                 fscanf(img, \textcolor{stringliteral}{"%hd %hd %hd"}, &p[i][j].red, &p[i][j].green, &p[i][j].blue);
+87             \}
+88         \}
+89         \textcolor{keywordtype}{char} t;
+90         fscanf(img, \textcolor{stringliteral}{"%c"}, &t);
+91     \}
+92     fclose(img);
+93     \textcolor{keywordflow}{return} p;
+94 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a9de8d46904fecae15603650ea8029e6c}} 
+\index{funcoes.\+h@{funcoes.\+h}!allocar@{allocar}}
+\index{allocar@{allocar}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{allocar()}
+{\footnotesize\ttfamily \textbf{ pixel}$\ast$$\ast$ allocar (\begin{DoxyParamCaption}\item[{int}]{L,  }\item[{int}]{C }\end{DoxyParamCaption})}
+
+
+
+Variavéis para armazenar o tamanho da imagem em edição durante a execução do programa. 
+
+
+
+Definição na linha 12 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+13 \{ \textcolor{comment}{// FUNÇÃO DE ALOCAÇÃO DINÂMICA DE MÉMORIA: recebe dois inteiros L e C, que serão usados como referência
+       para a alocação dinâmica de memória em uma matriz.}
+14     \textcolor{keywordtype}{int} i;
+15     pixel **p;
+16     p = malloc(L * \textcolor{keyword}{sizeof}(pixel *));
+17     \textcolor{keywordflow}{for} (i = 0; i < L; i++)
+18     \{
+19         p[i] = calloc(C, \textcolor{keyword}{sizeof}(pixel *));
+20     \}
+21     \textcolor{keywordflow}{return} p;
+22 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_ac35925b111e7fc9bd1743169eafc95df}} 
+\index{funcoes.\+h@{funcoes.\+h}!circulo@{circulo}}
+\index{circulo@{circulo}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{circulo()}
+{\footnotesize\ttfamily void circulo (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{\textbf{ ponto}}]{c,  }\item[{int}]{r }\end{DoxyParamCaption})}
+
+
+
+A função clear recebe três inteiros que serão usados para setar a cor de todos os pixels da imagem, limpando a imagem. 
+
+
+
+Definição na linha 206 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+207 \{ \textcolor{comment}{// https://www.geeksforgeeks.org/bresenhams-circle-drawing-algorithm/}
+208     \textcolor{comment}{//Função criada com algoritimo de Bresenham, através dos conhecimentos do pdf disponibilizados pelo
+       professor juntamente com o link adicionado acima}
+209     \textcolor{keywordtype}{int} xc, yc;
+210     xc = c.x;
+211     yc = c.y;
+212     \textcolor{keywordtype}{int} x = 0;
+213     \textcolor{keywordtype}{int} y = r;
+214     \textcolor{keywordtype}{int} d = 1 - r;
+215     p[xc + x][yc + y] = color(p[xc + x][yc + y], cor.red, cor.green, cor.blue);
+216     p[xc - x][yc + y] = color(p[xc - x][yc + y], cor.red, cor.green, cor.blue);
+217     p[xc + x][yc - y] = color(p[xc + x][yc - y], cor.red, cor.green, cor.blue);
+218     p[xc - x][yc - y] = color(p[xc - x][yc - y], cor.red, cor.green, cor.blue);
+219     p[xc + y][yc + x] = color(p[xc + y][yc + x], cor.red, cor.green, cor.blue);
+220     p[xc - y][yc + x] = color(p[xc - y][yc + x], cor.red, cor.green, cor.blue);
+221     p[xc + y][yc - x] = color(p[xc + y][yc - x], cor.red, cor.green, cor.blue);
+222     p[xc - y][yc - x] = color(p[xc - y][yc - x], cor.red, cor.green, cor.blue);
+223     \textcolor{keywordflow}{while} (x <= y)
+224     \{
+225         x++;
+226         \textcolor{keywordflow}{if} (d < 0)
+227         \{
+228             d = d + 2 * x + 1;
+229         \}
+230         \textcolor{keywordflow}{else}
+231         \{
+232             y--;
+233             d = d + 2 * (x - y) + 1;
+234         \}
+235         p[xc + x][yc + y] = color(p[xc + x][yc + y], cor.red, cor.green, cor.
+      blue);
+236         p[xc - x][yc + y] = color(p[xc - x][yc + y], cor.red, cor.green, cor.
+      blue);
+237         p[xc + x][yc - y] = color(p[xc + x][yc - y], cor.red, cor.green, cor.
+      blue);
+238         p[xc - x][yc - y] = color(p[xc - x][yc - y], cor.red, cor.green, cor.
+      blue);
+239         p[xc + y][yc + x] = color(p[xc + y][yc + x], cor.red, cor.green, cor.
+      blue);
+240         p[xc - y][yc + x] = color(p[xc - y][yc + x], cor.red, cor.green, cor.
+      blue);
+241         p[xc + y][yc - x] = color(p[xc + y][yc - x], cor.red, cor.green, cor.
+      blue);
+242         p[xc - y][yc - x] = color(p[xc - y][yc - x], cor.red, cor.green, cor.
+      blue);
+243     \}
+244 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a2bcece9985f7e7311273e062ca608eab}} 
+\index{funcoes.\+h@{funcoes.\+h}!clear@{clear}}
+\index{clear@{clear}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{clear()}
+{\footnotesize\ttfamily void clear (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{unsigned short}]{r,  }\item[{unsigned short}]{g,  }\item[{unsigned short}]{b }\end{DoxyParamCaption})}
+
+
+
+Função de Desenho de polígonos, recebe uma struct pixel, um inteiro l e dois vetores de inteiro x e y com tamanho l, o inteiro l armaneza a quantidade de pontos do polígono e os vetores de inteiro x e y armazem as posições em pixel desses pontos. 
+
+
+
+Definição na linha 195 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+196 \{ \textcolor{comment}{//Limpa a imagem setando todos os pixels para uma cor especificada}
+197     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dimy; j++)
+198     \{
+199         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dimx; i++)
+200         \{
+201             p[i][j] = color(p[i][j], r, g, b);
+202         \}
+203     \}
+204 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_ad177adc333f3b3216ad99954f57dcde0}} 
+\index{funcoes.\+h@{funcoes.\+h}!color@{color}}
+\index{color@{color}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{color()}
+{\footnotesize\ttfamily \textbf{ pixel} color (\begin{DoxyParamCaption}\item[{\textbf{ pixel}}]{p,  }\item[{unsigned short}]{r,  }\item[{unsigned short}]{g,  }\item[{unsigned short}]{b }\end{DoxyParamCaption})}
+
+
+
+F\+U\+NÇÃO DE A\+L\+O\+C\+AÇÃO D\+I\+NÂ\+M\+I\+CA DE MÉ\+M\+O\+R\+IA\+: recebe dois inteiros L e C, que serão usados como referência para a alocação dinâmica de memória em uma matriz. 
+
+
+
+Definição na linha 24 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+25 \{
+26     p.red = r;
+27     p.green = g;
+28     p.blue = b;
+29     \textcolor{keywordflow}{return} p;
+30 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a5f3b3425ca4ce2be5043883294c4e497}} 
+\index{funcoes.\+h@{funcoes.\+h}!contar\+\_\+spec@{contar\+\_\+spec}}
+\index{contar\+\_\+spec@{contar\+\_\+spec}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{contar\+\_\+spec()}
+{\footnotesize\ttfamily int contar\+\_\+spec (\begin{DoxyParamCaption}\item[{char}]{n[50] }\end{DoxyParamCaption})}
+
+
+
+Definição na linha 307 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+308 \{ \textcolor{comment}{//FUNÇÃO QUE CONTA A QUANTIDADE DE linha2S DO ARQUIVO}
+309     \textcolor{keywordtype}{int} linha2s = 0;
+310     \textcolor{keywordtype}{char} c, f = \textcolor{charliteral}{'\(\backslash\)n'};
+311     FILE *arq = fopen(n, \textcolor{stringliteral}{"r"});
+312     \textcolor{keywordflow}{if} (arq == NULL)
+313     \{
+314         printf(\textcolor{stringliteral}{"Erro na abertura do arquivo"});
+315     \}
+316     \textcolor{keywordflow}{else}
+317     \{
+318         \textcolor{keywordflow}{while} (fread(&c, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}), 1, arq))
+319         \{
+320             \textcolor{keywordflow}{if} (c == f)
+321             \{
+322                 linha2s++;
+323             \}
+324         \}
+325         fclose(arq);
+326     \}
+327 
+328     \textcolor{keywordflow}{return} linha2s;
+329 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a0bd7c472a897af20e56c8d5483436282}} 
+\index{funcoes.\+h@{funcoes.\+h}!fill@{fill}}
+\index{fill@{fill}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{fill()}
+{\footnotesize\ttfamily void fill (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{\textbf{ pixel}}]{cor }\end{DoxyParamCaption})}
+
+
+
+Função criada com algoritimo de Bresenham, através dos conhecimentos do pdf disponibilizados pelo professor juntamente com o link adicionado acima. Recebe uma struct do tipo pixel, outra do tipo ponto e um inteiro. O pixel armazena todos os pixel da imagem, o ponto armazena a localização do pixel do centro do círculo e o inteiro r armazena o tamanho do raio do círculo. 
+
+
+
+Definição na linha 264 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+265 \{
+266     pixel borda;
+267     borda.red = p[x][y].red;
+268     borda.blue = p[x][y].blue;
+269     borda.green = p[x][y].green;
+270     fill2(p, x, y, core, borda);
+271 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_ac22fa8db2f2e7276a73a71694409531f}} 
+\index{funcoes.\+h@{funcoes.\+h}!fill2@{fill2}}
+\index{fill2@{fill2}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{fill2()}
+{\footnotesize\ttfamily void fill2 (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{\textbf{ pixel}}]{core,  }\item[{\textbf{ pixel}}]{borda }\end{DoxyParamCaption})}
+
+
+
+Definição na linha 246 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+247 \{ \textcolor{comment}{//https://www.geeksforgeeks.org/boundary-fill-algorithm/}
+248 
+249     \textcolor{keywordflow}{if} ((p[x][y].red == borda.red) &&
+250         (p[x][y].green == borda.green) &&
+251         (p[x][y].blue == borda.blue))
+252     \{
+253         p[x][y] = color(p[x][y], core.red, core.green, core.blue);
+254         \textcolor{keywordflow}{if} (x + 1 < dimx)
+255             fill2(p, x + 1, y, core, borda);
+256         \textcolor{keywordflow}{if} (x - 1 >= 0)
+257             fill2(p, x - 1, y, core, borda);
+258         \textcolor{keywordflow}{if} (y + 1 < dimy)
+259             fill2(p, x, y + 1, core, borda);
+260         \textcolor{keywordflow}{if} (y - 1 >= 0)
+261             fill2(p, x, y - 1, core, borda);
+262     \}
+263 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a9657bb5a15ff4a2b2ce147096346ff68}} 
+\index{funcoes.\+h@{funcoes.\+h}!imagem@{imagem}}
+\index{imagem@{imagem}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{imagem()}
+{\footnotesize\ttfamily \textbf{ pixel}$\ast$$\ast$ imagem (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Recebe um pixel e 3 valores(R\+GB 0-\/255) e retorna o pixel recebico com a nova cor passada. 
+
+\mbox{\label{funcoes_8h_af8c97c3f5ea7b9658bcea346edd1ab39}} 
+\index{funcoes.\+h@{funcoes.\+h}!ler\+\_\+image@{ler\+\_\+image}}
+\index{ler\+\_\+image@{ler\+\_\+image}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{ler\+\_\+image()}
+{\footnotesize\ttfamily \textbf{ espec} ler\+\_\+image (\begin{DoxyParamCaption}\item[{char}]{spc\+\_\+n[50],  }\item[{char}]{img\+\_\+n[50] }\end{DoxyParamCaption})}
+
+
+
+Função para ler o arquivo de especificação e gerar a imagem tal qual escrita no arquivo. 
+
+
+
+Definição na linha 366 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+367 \{ \textcolor{comment}{// FUNÇÃO QUE LER O TAMANHO DA IMAGEM E ARMAENZA EM UMA STRUCT}
+368     espec a;
+369     \textcolor{keywordtype}{int} i;
+370     FILE *arq = fopen(spc\_n, \textcolor{stringliteral}{"r"});
+371     \textcolor{keywordflow}{for} (i = 0; i < (contar_spec(spc\_n)); i++)
+372     \{
+373         fscanf(arq, \textcolor{stringliteral}{"image %d %d\(\backslash\)n"}, &a.image[0], &a.image[1]);
+374     \}
+375     fclose(arq);
+376     imagem(img\_n, a.image[0], a.image[1]);
+377     strcpy(a.save, img\_n);
+378     \textcolor{keywordflow}{return} a;
+379 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a8a3575310e7d8ed32b833ff599fea9e5}} 
+\index{funcoes.\+h@{funcoes.\+h}!ler\+\_\+save@{ler\+\_\+save}}
+\index{ler\+\_\+save@{ler\+\_\+save}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{ler\+\_\+save()}
+{\footnotesize\ttfamily void ler\+\_\+save (\begin{DoxyParamCaption}\item[{char}]{n[50],  }\item[{char}]{i\+\_\+nome[50] }\end{DoxyParamCaption})}
+
+
+
+Função que conta a quantidade de linhas do arquivo\+: recebe o nome do arquivo e retorna um inteiro com a quantidade de linhas no arquivo. 
+
+
+
+Definição na linha 331 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+332 \{ \textcolor{comment}{//FUNÇÃO QUE LER O NOME DO ARQUIVO PPM E ARMAZENA EM UMA STRING}
+333     \textcolor{keywordtype}{int} i = 0, j = 0;
+334     \textcolor{keywordtype}{char} linha[50];
+335     \textcolor{keywordtype}{char} l\_aux[50];
+336     \textcolor{keywordtype}{char} comparador[4];
+337     \textcolor{keywordtype}{char} save\_img[50];
+338     FILE *arq = fopen(n, \textcolor{stringliteral}{"r"});
+339     \textcolor{keywordflow}{if} (arq == NULL)
+340     \{
+341         printf(\textcolor{stringliteral}{"Erro na abertura do arquivo"});
+342     \}
+343     \textcolor{keywordflow}{else}
+344     \{
+345         \textcolor{keywordflow}{for} (i = 0; i < (contar_spec(n)); i++)
+346         \{
+347             fgets(linha, 50, arq);
+348             strcpy(l\_aux, linha);
+349             memcpy(comparador, &linha[0], 4);
+350             comparador[4] = \textcolor{charliteral}{'\(\backslash\)0'};
+351             \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"save"}) == 0)
+352             \{
+353                 \textcolor{keywordflow}{for} (i = 0; i < (strlen(l\_aux) - 6); i++)
+354                 \{
+355                     save\_img[i] = linha[(i + 5)];
+356                     j = i;
+357                 \}
+358                 save\_img[j + 1] = \textcolor{charliteral}{'\(\backslash\)0'};
+359                 strcpy(i\_nome, save\_img);
+360             \}
+361         \}
+362         fclose(arq);
+363     \}
+364 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_ab13215ddb866fcdf16ecefbabffaf0a5}} 
+\index{funcoes.\+h@{funcoes.\+h}!ler\+\_\+spc@{ler\+\_\+spc}}
+\index{ler\+\_\+spc@{ler\+\_\+spc}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{ler\+\_\+spc()}
+{\footnotesize\ttfamily void ler\+\_\+spc (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{char}]{n[50] }\end{DoxyParamCaption})}
+
+
+
+Função para ler o nome de um arquivo de imagem .ppm e armazena-\/lo em uma string para manipulação no programa. 
+
+
+
+Definição na linha 381 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+382 \{ \textcolor{comment}{//FUNÇÃO PARA LER O ARQUIVO DE ESPECIFICAÇÃO}
+383     espec a;
+384     ler_save(n, a.save);
+385     a = ler_image(n, a.save);
+386     \textcolor{keywordtype}{int} i = 0;
+387     \textcolor{keywordtype}{char} linha2[50];
+388     \textcolor{keywordtype}{char} l\_aux[50];
+389     \textcolor{keywordtype}{char} comparador[4];
+390     FILE *arq = fopen(n, \textcolor{stringliteral}{"r"});
+391     FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+392     \textcolor{keywordflow}{if} (aux == NULL)
+393     \{
+394         printf(\textcolor{stringliteral}{"Erro na abertura do arquivo"});
+395         \textcolor{keywordflow}{return};
+396     \}
+397     \textcolor{keywordflow}{if} (arq == NULL)
+398     \{
+399         printf(\textcolor{stringliteral}{"Erro na abertura do arquivo"});
+400         \textcolor{keywordflow}{return};
+401     \}
+402     \textcolor{keywordflow}{else}
+403     \{
+404         p = abrir_arquivo(a.save);
+405         \textcolor{keywordflow}{for} (i = 0; i < (contar_spec(n)); i++)
+406         \{
+407             fgets(linha2, 50, arq);
+408             strcpy(l\_aux, linha2);
+409             memcpy(comparador, &linha2[0], 4);
+410             comparador[4] = \textcolor{charliteral}{'\(\backslash\)0'};
+411 
+412             \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"colo"}) == 0)
+413             \{
+414                 fputs(l\_aux, aux);
+415                 fclose(aux);
+416                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+417                 fscanf(aux, \textcolor{stringliteral}{"color %d %d %d\(\backslash\)n"}, &a.color[0], &a.color[1], &a.
+      color[2]);
+418                 fclose(aux);
+419                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+420                 cor = color(cor, a.color[0], a.color[1], a.color[2]);
+421             \}
+422             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"line"}) == 0)
+423             \{
+424                 fputs(l\_aux, aux);
+425                 fclose(aux);
+426                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+427                 fscanf(aux, \textcolor{stringliteral}{"line %d %d %d %d\(\backslash\)n"}, &a.line[0], &a.line[1], &a.
+      line[2], &a.line[3]);
+428                 fclose(aux);
+429                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+430                 reta r;
+431                 r.p1.x = a.line[0];
+432                 r.p1.y = a.line[1];
+433                 r.p2.x = a.line[2];
+434                 r.p2.y = a.line[3];
+435                 linha(p, r);
+436             \}
+437             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"poly"}) == 0)
+438             \{
+439                 fputs(l\_aux, aux);
+440                 fclose(aux);
+441                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+442                 polygons a;
+443                 fscanf(aux, \textcolor{stringliteral}{"polygon %d "}, &a.tam);
+444                 a.x = malloc(a.tam * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));
+445                 a.y = malloc(a.tam * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));
+446                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} t = 0; t < a.tam; t++)
+447                 \{
+448                     fscanf(aux, \textcolor{stringliteral}{"%d "}, &a.x[t]);
+449                     \textcolor{keywordflow}{if} (t != a.tam - 1)
+450                     \{
+451                         fscanf(aux, \textcolor{stringliteral}{"%d "}, &a.y[t]);
+452                     \}
+453                     \textcolor{keywordflow}{else}
+454                     \{
+455                         fscanf(aux, \textcolor{stringliteral}{"%d"}, &a.y[t]);
+456                     \}
+457                 \}
+458                 fscanf(aux, \textcolor{stringliteral}{"\(\backslash\)n"});
+459                 fclose(aux);
+460                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+461                 polygon(p, a.tam, a.x, a.y);
+462                 free(a.x);
+463                 free(a.y);
+464             \}
+465             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"circ"}) == 0)
+466             \{
+467                 fputs(l\_aux, aux);
+468                 fclose(aux);
+469                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+470                 fscanf(aux, \textcolor{stringliteral}{"circle %d %d %d\(\backslash\)n"}, &a.circle[0], &a.circle[1], &a.circle[2]);
+471                 fclose(aux);
+472                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+473                 ponto c;
+474                 c.x = a.circle[0];
+475                 c.y = a.circle[1];
+476                 circulo(p, c, a.circle[2]);
+477             \}
+478             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"fill"}) == 0)
+479             \{
+480                 fputs(l\_aux, aux);
+481                 fclose(aux);
+482                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+483                 fscanf(aux, \textcolor{stringliteral}{"fill %d %d\(\backslash\)n"}, &a.fill[0], &a.fill[1]);
+484                 fclose(aux);
+485                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+486                 fill(p, a.fill[0], a.fill[1], cor);
+487             \}
+488             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"rect"}) == 0)
+489             \{
+490                 fputs(l\_aux, aux);
+491                 fclose(aux);
+492                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+493                 fscanf(aux, \textcolor{stringliteral}{"rect %d %d %d %d\(\backslash\)n"}, &a.rect[0], &a.rect[1], &a.rect[2], &a.rect[3]);
+494                 fclose(aux);
+495                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+496                 rect(p, a.rect[0], a.rect[1], a.rect[3], a.rect[2]);
+497             \}
+498             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(comparador, \textcolor{stringliteral}{"clea"}) == 0)
+499             \{
+500                 fputs(l\_aux, aux);
+501                 fclose(aux);
+502                 FILE *aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"r"});
+503                 fscanf(aux, \textcolor{stringliteral}{"clear %d %d %d\(\backslash\)n"}, &a.clear[0], &a.clear[1], &a.clear[2]);
+504                 fclose(aux);
+505                 aux = fopen(\textcolor{stringliteral}{"aux.txt"}, \textcolor{stringliteral}{"w"});
+506                 clear(p, a.clear[0], a.clear[1], a.clear[2]);
+507             \}
+508         \}
+509         free(aux);
+510         free(arq);
+511         save(p, a.save);
+512         \textcolor{keyword}{remove}(\textcolor{stringliteral}{"aux.txt"});
+513     \}
+514 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a35d44a9e2882dec6bb90d276096ec162}} 
+\index{funcoes.\+h@{funcoes.\+h}!linha@{linha}}
+\index{linha@{linha}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{linha()}
+{\footnotesize\ttfamily void linha (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{\textbf{ reta}}]{r }\end{DoxyParamCaption})}
+
+
+
+Funçao que lê e constroi o array pixel $\ast$$\ast$ de acordo com o arquivo .txt\+: Recebe como parâmetor uma srting com o nome do arquivo para abrir e retorna o array pixel $\ast$$\ast$p;. 
+
+
+
+Definição na linha 96 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+97 \{                                  
+98     \textcolor{keywordtype}{int} dy = abs(r.p2.y - r.p1.y); \textcolor{comment}{//Diferença entre os pontos y2 e y1}
+99     \textcolor{keywordtype}{int} dx = abs(r.p2.x - r.p1.x); \textcolor{comment}{//Diferença entre os pontos x2 e x1}
+100     \textcolor{keywordtype}{int} sx, sy;                    \textcolor{comment}{//Variaveis que serão utilizadas para armazenar o sinal de x e y}
+101     \textcolor{keywordtype}{int} i = r.p1.y;
+102     \textcolor{keywordtype}{int} j = r.p1.x;
+103     \textcolor{keywordflow}{if} (r.p1.x < r.p2.x) \textcolor{comment}{// Determinar os sinais de x e y}
+104     \{
+105         sx = 1;
+106     \}
+107     \textcolor{keywordflow}{else}
+108     \{
+109         sx = -1;
+110     \}
+111     \textcolor{keywordflow}{if} (r.p1.y < r.p2.y)
+112     \{
+113         sy = 1;
+114     \}
+115     \textcolor{keywordflow}{else}
+116     \{
+117         sy = -1;
+118     \} \textcolor{comment}{//fim da determinação de sinais}
+119     \textcolor{keywordtype}{int} erro;
+120     \textcolor{keywordtype}{int} erroTemp;
+121     \textcolor{keywordflow}{if} (dx > dy) \textcolor{comment}{// Definição do erro inicial baseado na maior diferença}
+122     \{
+123         erro = dx / 2;
+124     \}
+125     \textcolor{keywordflow}{else}
+126     \{
+127         erro = (-dy) / 2;
+128     \}
+129     \textcolor{keywordflow}{while} (\textcolor{keyword}{true})
+130     \{
+131         p[i][j] = color(p[i][j], cor.red, cor.green, cor.blue);
+132         \textcolor{keywordflow}{if} ((i == r.p2.y) && (j == r.p2.x))                     \textcolor{comment}{// Testa se chegou ao ponto final da reta}
+133         \{
+134             \textcolor{keywordflow}{break};
+135         \}
+136         erroTemp = erro;
+137         \textcolor{keywordflow}{if} (erroTemp > -dx)
+138         \{
+139             erro -= dy;
+140             j += sx;
+141         \}
+142         \textcolor{keywordflow}{if} (erroTemp < dy)
+143         \{
+144             erro += dx;
+145             i += sy;
+146         \}
+147     \}
+148 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a0773218f17fe8125f5861385b65c709c}} 
+\index{funcoes.\+h@{funcoes.\+h}!polygon@{polygon}}
+\index{polygon@{polygon}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{polygon()}
+{\footnotesize\ttfamily void polygon (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{int}]{l,  }\item[{int}]{x[l],  }\item[{int}]{y[l] }\end{DoxyParamCaption})}
+
+
+
+F\+U\+NÇÃO S\+A\+VE\+: Recebe como paramâmetro uma struct do tipo pixel $\ast$$\ast$, e uma string com o nome do arquivo da imagem. Os dados da matriz de pixel são armazenados do arquivo informado. 
+
+
+
+Definição na linha 179 do arquivo funcoes.\+c.
+
+
+\begin{DoxyCode}
+180 \{
+181     reta r;
+182     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < l; i++)
+183     \{
+184         r.p1.x = x[i - 1];
+185         r.p1.y = y[i - 1];
+186         r.p2.x = x[i];
+187         r.p2.y = y[i];
+188         linha(p, r);
+189     \}
+190     r.p1.x = x[0];
+191     r.p1.y = y[0];
+192     linha(p, r);
+193 \}
+\end{DoxyCode}
+\mbox{\label{funcoes_8h_a5546e0ecd5fb5e9a56a2b3d0ff839bc3}} 
+\index{funcoes.\+h@{funcoes.\+h}!react@{react}}
+\index{react@{react}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{react()}
+{\footnotesize\ttfamily void react (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{A,  }\item[{int}]{L }\end{DoxyParamCaption})}
+
+
+
+Função auxiliar da fill que inicializa os valores de pixel borda. 
+
+\mbox{\label{funcoes_8h_a5b9809578ece33b0228b217256e6487f}} 
+\index{funcoes.\+h@{funcoes.\+h}!save@{save}}
+\index{save@{save}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{save()}
+{\footnotesize\ttfamily void save (\begin{DoxyParamCaption}\item[{\textbf{ pixel} $\ast$$\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Função de desenhos de linhas, recebe duas structs como argumento, pixel e reta, a primeira armazena o vertor de desenho da imagem e a segunda armazena quatro inteiros, sendo que cada par de inteiro repressenta uma posição em pixel. 
+
+
+
+\subsection{Variáveis}
+\mbox{\label{funcoes_8h_a8b0f6ae031a507c3ffb7bf0eec290d46}} 
+\index{funcoes.\+h@{funcoes.\+h}!dimx@{dimx}}
+\index{dimx@{dimx}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{dimx}
+{\footnotesize\ttfamily int dimx}
+
+
+
+Definição na linha 5 do arquivo funcoes.\+h.
+
+\mbox{\label{funcoes_8h_a3a072d6ef9c51d085b44eac70f2edff6}} 
+\index{funcoes.\+h@{funcoes.\+h}!dimy@{dimy}}
+\index{dimy@{dimy}!funcoes.\+h@{funcoes.\+h}}
+\subsubsection{dimy}
+{\footnotesize\ttfamily int dimy}
+
+
+
+Definição na linha 5 do arquivo funcoes.\+h.
+
