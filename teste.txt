@@ -4,7 +4,3 @@ circle 400 300 50
 color 0 0 255
 polygon 3 0 400 300 200 600 400
 save img.ppm
-
-
-
-

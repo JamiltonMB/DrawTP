@@ -94,13 +94,13 @@ pixel **abrir_arquivo(char w[50])
 }
 
 void linha(pixel **p, reta r)	  // Função de desenhos de linhas
-{								   //https://gist.github.com/mfilipelino/11240714#file-paintopengl-c
+{								   
 	int dy = abs(r.p2.y - r.p1.y); //Diferença entre os pontos y2 e y1
 	int dx = abs(r.p2.x - r.p1.x); //Diferença entre os pontos x2 e x1
 	int sx, sy;					   //Variaveis que serão utilizadas para armazenar o sinal de x e y
 	int i = r.p1.y;
 	int j = r.p1.x;
-	if (r.p1.x < r.p2.x) //Determinar os sinais de x e y
+	if (r.p1.x < r.p2.x) // Determinar os sinais de x e y
 	{
 		sx = 1;
 	}
