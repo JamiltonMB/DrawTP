@@ -81,8 +81,8 @@ static void button_atualizar(gpointer data)
 
 static void destroy(GtkWidget *widget, gpointer data)
 {
-    gtk_main_quit();
     free(p);
+    gtk_main_quit();
 }
 
 int main(int argc, char *argv[])
